@@ -6,3 +6,8 @@
 - **Lightweight stack:** CPU gradient boosting, file-based MLflow tracking/registry, SQLite prediction ledger, no external datasets or paid dependencies.
 - **Quantiles:** 10th/90th percentile models produce a nominal 80% interval. Sort endpoints and include the point estimate to resolve crossing. Report actual coverage; this is not a calibrated guarantee.
 - **Weather assumption:** synthetic temperature is known at forecast time. Real deployment must use vintage-correct weather forecasts, not realized future weather.
+- **Registry:** MLflow 2.22 skinny SDK keeps local installs small and supports file-store model versions and aliases. The bundle contains the point estimator, both quantile estimators, reference features and evaluation metadata. Only load trusted artifacts.
+- **Promotion:** at least 2% lower MAE on an identical, later chronological holdout; initial training refuses to replace an existing champion. Linux/macOS process lock serializes retraining. API pins a resolved version until restart, preventing mixed-version requests.
+- **Monitoring:** bounded last-336-prediction window per model version, minimum 48 observations; drift requires both PSI > 0.2 and Bonferroni-corrected KS p < 0.01 / feature count. Input drift is not proof of forecast degradation. Actuals are immutable except for idempotent duplicate submissions.
+- **Demo:** 70 drifted days for adaptation and promotion, then 14 untouched future days for before/after assessment. No claim that synthetic performance transfers to real meters.
+- **LLM:** opt-in only; deterministic fallback; send aggregate summary only. Output is marked unverified generated text. No remote LLM calls are required by any default command.

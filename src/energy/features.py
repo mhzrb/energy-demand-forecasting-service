@@ -3,8 +3,20 @@
 import numpy as np
 import pandas as pd
 
-FEATURES = ["temperature", "holiday", "hour_sin", "hour_cos", "weekday", "year_sin",
-            "year_cos", "lag_1", "lag_24", "lag_168", "rolling_mean_24", "rolling_std_24"]
+FEATURES = [
+    "temperature",
+    "holiday",
+    "hour_sin",
+    "hour_cos",
+    "weekday",
+    "year_sin",
+    "year_cos",
+    "lag_1",
+    "lag_24",
+    "lag_168",
+    "rolling_mean_24",
+    "rolling_std_24",
+]
 
 
 def feature_frame(frame: pd.DataFrame) -> pd.DataFrame:
@@ -36,9 +48,12 @@ def supervised(frame: pd.DataFrame):
 def online_features(timestamp, temperature, holiday, history) -> pd.DataFrame:
     """History is exactly 168 consecutive hourly actuals, oldest first, ending at t-1."""
     ts = pd.Timestamp(timestamp)
-    frame = pd.DataFrame({
-        "timestamp": pd.date_range(end=ts, periods=169, freq="h"),
-        "temperature": [temperature] * 169, "holiday": [holiday] * 169,
-        "demand": [*history, np.nan],
-    })
+    frame = pd.DataFrame(
+        {
+            "timestamp": pd.date_range(end=ts, periods=169, freq="h"),
+            "temperature": [temperature] * 169,
+            "holiday": [holiday] * 169,
+            "demand": [*history, np.nan],
+        }
+    )
     return feature_frame(frame).tail(1).reset_index(drop=True)

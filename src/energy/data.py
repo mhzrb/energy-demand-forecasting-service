@@ -19,22 +19,34 @@ def generate(hours=9600, seed=42, start="2024-01-01T00:00:00Z", faults=True, dri
     day = ts.dayofyear.to_numpy()
     hour = ts.hour.to_numpy()
     temperature = (
-        11 + 11 * np.sin(2 * np.pi * (day - 100) / 365.25)
-        + 3 * np.sin(2 * np.pi * (hour - 8) / 24) + rng.normal(0, 1.4, hours)
+        11
+        + 11 * np.sin(2 * np.pi * (day - 100) / 365.25)
+        + 3 * np.sin(2 * np.pi * (hour - 8) / 24)
+        + rng.normal(0, 1.4, hours)
     )
     if drift:
         temperature += 11  # Heat-wave stress test, not a climate projection.
     holiday = np.array([(t.month, t.day) in {(1, 1), (5, 1), (12, 25), (12, 26)} for t in ts])
     demand = (
-        410 + 75 * np.sin(2 * np.pi * (hour - 7) / 24)
-        + 45 * (ts.dayofweek.to_numpy() < 5) - 60 * holiday
-        + 9 * np.maximum(16 - temperature, 0) + 14 * np.maximum(temperature - 22, 0)
-        + 20 * np.cos(2 * np.pi * day / 365.25) + rng.normal(0, 12, hours)
+        410
+        + 75 * np.sin(2 * np.pi * (hour - 7) / 24)
+        + 45 * (ts.dayofweek.to_numpy() < 5)
+        - 60 * holiday
+        + 9 * np.maximum(16 - temperature, 0)
+        + 14 * np.maximum(temperature - 22, 0)
+        + 20 * np.cos(2 * np.pi * day / 365.25)
+        + rng.normal(0, 12, hours)
     )
     if drift:
         demand = 1.22 * demand + 65  # Demand-meter gain/offset change.
-    frame = pd.DataFrame({"timestamp": ts, "temperature": temperature,
-                          "holiday": holiday.astype(int), "demand": demand})
+    frame = pd.DataFrame(
+        {
+            "timestamp": ts,
+            "temperature": temperature,
+            "holiday": holiday.astype(int),
+            "demand": demand,
+        }
+    )
     if faults:
         for column in ("temperature", "demand"):
             missing = rng.choice(hours, max(1, hours // 200), replace=False)
@@ -65,7 +77,8 @@ def validate(frame: pd.DataFrame, allow_sensor_faults=False) -> dict:
             invalid_range |= values.notna() & ~values.isin([0, 1])
         bad = values.isna() | invalid_range
         report["columns"][column] = {
-            "missing": int(values.isna().sum()), "out_of_range": int(invalid_range.sum()),
+            "missing": int(values.isna().sum()),
+            "out_of_range": int(invalid_range.sum()),
             "bad_row_indices": np.flatnonzero(bad).tolist()[:20],
         }
         if invalid_type.any():
