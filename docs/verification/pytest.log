@@ -1,0 +1,44 @@
+....................................                                     [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/mlflow/utils/pydantic_utils.py:33
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/utils/pydantic_utils.py:33: PydanticDeprecatedSince212: Using `@model_validator` with mode='after' on a classmethod is deprecated. Instead, use an instance method. See the documentation at https://docs.pydantic.dev/2.13/concepts/validators/#model-after-validator. Deprecated in Pydantic V2.12 to be removed in V3.0.
+    return pydantic_model_validator(mode=mode)(func)
+
+.venv/lib/python3.12/site-packages/mlflow/gateway/config.py:454
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/gateway/config.py:454: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Route(ConfigModel):
+
+.venv/lib/python3.12/site-packages/starlette/testclient.py:37
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+tests/test_retraining.py::test_actual_registration_and_promotion_branches[False]
+tests/test_retraining.py::test_actual_registration_and_promotion_branches[True]
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/types/utils.py:452: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+    warnings.warn(
+
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+tests/test_retraining.py::test_actual_registration_and_promotion_branches[False]
+tests/test_retraining.py::test_actual_registration_and_promotion_branches[True]
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/models/model.py:365: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    self.utc_time_created = str(utc_time_created or datetime.utcnow())
+
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/types/chat.py:162: PydanticDeprecatedSince20: `min_items` is deprecated and will be removed, use `min_length` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    stop: Optional[list[str]] = Field(None, min_items=1)
+
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/types/chat.py:216: PydanticDeprecatedSince20: `min_items` is deprecated and will be removed, use `min_length` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    messages: list[ChatMessage] = Field(..., min_items=1)
+
+tests/test_api.py::test_api_single_batch_actual_monitor_metrics_insights
+  /workspace/scratch/eeae547dd17b/.venv/lib/python3.12/site-packages/mlflow/types/chat.py:217: PydanticDeprecatedSince20: `min_items` is deprecated and will be removed, use `min_length` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    tools: Optional[list[ChatTool]] = Field(None, min_items=1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+36 passed, 16 warnings in 1.84s

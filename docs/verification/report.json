@@ -1,0 +1,75 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux",
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/eeae547dd17b/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.024
+    },
+    {
+      "command": [
+        "/workspace/scratch/eeae547dd17b/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.027
+    },
+    {
+      "command": [
+        "/workspace/scratch/eeae547dd17b/.venv/bin/python",
+        "-m",
+        "pytest"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.01
+    },
+    {
+      "command": [
+        "/workspace/scratch/eeae547dd17b/.venv/bin/python",
+        "-m",
+        "energy.cli",
+        "train",
+        "--output",
+        "/tmp/energy-verification-x0e651b9/evidence"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 7.427
+    },
+    {
+      "command": [
+        "/workspace/scratch/eeae547dd17b/.venv/bin/python",
+        "-m",
+        "energy.cli",
+        "demo",
+        "--output",
+        "/tmp/energy-verification-x0e651b9/evidence"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.673
+    },
+    {
+      "command": [
+        "/workspace/scratch/eeae547dd17b/.venv/bin/python",
+        "scripts/smoke_api.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.607
+    }
+  ],
+  "reproducibility": "Exact training metrics, input hash and future-test metrics matched",
+  "docker": "NOT VERIFIED: executable absent",
+  "remote_llm": "NOT VERIFIED: no live provider calls",
+  "github_actions": "NOT VERIFIED: no repository push or hosted run",
+  "passed": true
+}

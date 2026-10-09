@@ -26,7 +26,7 @@
       "path": "/predict",
       "status": 200,
       "response": {
-        "prediction_id": "6909ea7e-c6fd-40d2-bc77-7eb63e6c8efb",
+        "prediction_id": "c0aea02a-c9e1-4e8d-b8c4-7fe8911136bd",
         "forecast_at": "2024-01-08T00:00:00Z",
         "model_version": "2",
         "prediction_kw": 571.3042001959993,
@@ -41,7 +41,7 @@
       "status": 200,
       "response": [
         {
-          "prediction_id": "b05038c8-2e6b-4d77-82cc-e0fc6e0bed56",
+          "prediction_id": "011726e2-398e-4cd7-9666-9255939b3fe0",
           "forecast_at": "2024-01-08T00:00:00Z",
           "model_version": "2",
           "prediction_kw": 571.3042001959993,
@@ -50,7 +50,7 @@
           "nominal_coverage": 0.8
         },
         {
-          "prediction_id": "2e57d666-a171-4b4b-b9d0-c3c2217948fc",
+          "prediction_id": "047559d6-6c8f-4dc2-aac9-d838d0ce8e90",
           "forecast_at": "2024-01-08T00:00:00Z",
           "model_version": "2",
           "prediction_kw": 571.3042001959993,
@@ -77,12 +77,12 @@
         "drift": {
           "status": "insufficient_data",
           "drifted": false,
-          "samples": 3,
+          "samples": 7,
           "features": {}
         },
         "performance": {
           "status": "insufficient_data",
-          "samples": 1,
+          "samples": 2,
           "degraded": false
         }
       }
@@ -93,7 +93,7 @@
       "status": 200,
       "response": {
         "forecast": {
-          "prediction_id": "5e2dc430-9b1c-4f66-95d9-0a65c2f28c80",
+          "prediction_id": "746fd6d8-aff5-4543-9b40-dee0cb8baa88",
           "forecast_at": "2024-01-08T00:00:00Z",
           "model_version": "2",
           "prediction_kw": 571.3042001959993,
@@ -109,7 +109,7 @@
       "method": "GET",
       "path": "/metrics",
       "status": 200,
-      "response": "# HELP energy_predictions_total Persisted forecasts\n# TYPE energy_predictions_total counter\nenergy_predictions_total{version=\"2\"} 4.0\n# HELP energy_predictions_created Persisted forecasts\n# TYPE energy_predictions_created gauge\nenergy_predictions_created{version=\"2\"} 1.791544814646868e+09\n# HELP energy_prediction_errors_total Failed inference/storage calls\n# TYPE energy_prediction_errors_total counter\nenergy_prediction_errors_total 0.0\n# HELP energy_prediction_errors_created Failed inference/storage calls\n# TYPE energy_prediction_errors_created gauge\nenergy_prediction_errors_created 1.791544814517928e+09\n# HELP energy_prediction_seconds Inference plus storage time\n# TYPE energy_prediction_seconds histogram\nenergy_prediction_seconds_bucket{le=\"0.005\"} 0.0\nenergy_prediction_seconds_bucket{le=\"0.01\"} 1.0\nenergy_prediction_seconds_bucket{le=\"0.025\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.05\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.075\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.1\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.25\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.5\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.75\"} 3.0\nenergy_prediction_seconds_bucket{le=\"1.0\"} 3.0\nenergy_prediction_seconds_bucket{le=\"2.5\"} 3.0\nenergy_prediction_seconds_bucket{le=\"5.0\"} 3.0\nenergy_prediction_seconds_bucket{le=\"7.5\"} 3.0\nenergy_prediction_seconds_bucket{le=\"10.0\"} 3.0\nenergy_prediction_seconds_bucket{le=\"+Inf\"} 3.0\nenergy_prediction_seconds_count 3.0\nenergy_prediction_seconds_sum 0.03423706299963669\n# HELP energy_prediction_seconds_created Inference plus storage time\n# TYPE energy_prediction_seconds_created gauge\nenergy_prediction_seconds_created 1.791544814517946e+09\n# HELP energy_input_drift Input drift: -1 unknown, 0 absent, 1 detected\n# TYPE energy_input_drift gauge\nenergy_input_drift -1.0\n# HELP energy_recent_mae_kw Recent MAE; -1 if insufficient actuals\n# TYPE energy_recent_mae_kw gauge\nenergy_recent_mae_kw -1.0\n# HELP energy_actual_samples Actuals in the current version window\n# TYPE energy_actual_samples gauge\nenergy_actual_samples 1.0\n# HELP energy_model_ready Registry model loaded successfully\n# TYPE energy_model_ready gauge\nenergy_model_ready 1.0\n"
+      "response": "# HELP energy_predictions_total Persisted forecasts\n# TYPE energy_predictions_total counter\nenergy_predictions_total{version=\"2\"} 4.0\n# HELP energy_predictions_created Persisted forecasts\n# TYPE energy_predictions_created gauge\nenergy_predictions_created{version=\"2\"} 1.79154516594988e+09\n# HELP energy_prediction_errors_total Failed inference/storage calls\n# TYPE energy_prediction_errors_total counter\nenergy_prediction_errors_total 0.0\n# HELP energy_prediction_errors_created Failed inference/storage calls\n# TYPE energy_prediction_errors_created gauge\nenergy_prediction_errors_created 1.7915451658521361e+09\n# HELP energy_prediction_seconds Inference plus storage time\n# TYPE energy_prediction_seconds histogram\nenergy_prediction_seconds_bucket{le=\"0.005\"} 0.0\nenergy_prediction_seconds_bucket{le=\"0.01\"} 1.0\nenergy_prediction_seconds_bucket{le=\"0.025\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.05\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.075\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.1\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.25\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.5\"} 3.0\nenergy_prediction_seconds_bucket{le=\"0.75\"} 3.0\nenergy_prediction_seconds_bucket{le=\"1.0\"} 3.0\nenergy_prediction_seconds_bucket{le=\"2.5\"} 3.0\nenergy_prediction_seconds_bucket{le=\"5.0\"} 3.0\nenergy_prediction_seconds_bucket{le=\"7.5\"} 3.0\nenergy_prediction_seconds_bucket{le=\"10.0\"} 3.0\nenergy_prediction_seconds_bucket{le=\"+Inf\"} 3.0\nenergy_prediction_seconds_count 3.0\nenergy_prediction_seconds_sum 0.02797360100066726\n# HELP energy_prediction_seconds_created Inference plus storage time\n# TYPE energy_prediction_seconds_created gauge\nenergy_prediction_seconds_created 1.7915451658521557e+09\n# HELP energy_input_drift Input drift: -1 unknown, 0 absent, 1 detected\n# TYPE energy_input_drift gauge\nenergy_input_drift -1.0\n# HELP energy_recent_mae_kw Recent MAE; -1 if insufficient actuals\n# TYPE energy_recent_mae_kw gauge\nenergy_recent_mae_kw -1.0\n# HELP energy_actual_samples Actuals in the current version window\n# TYPE energy_actual_samples gauge\nenergy_actual_samples 2.0\n# HELP energy_model_ready Registry model loaded successfully\n# TYPE energy_model_ready gauge\nenergy_model_ready 1.0\n"
     },
     {
       "method": "POST",
