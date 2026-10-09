@@ -1,0 +1,55 @@
+# NOT VERIFIED here: Docker is unavailable. See README for initialization order.
+services:
+  api:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      ENERGY_RUNTIME: /app/runtime
+      MLFLOW_TRACKING_URI: file:///app/runtime/mlruns
+      INSIGHT_PROVIDER: template
+    volumes: ["energy-runtime:/app/runtime"]
+    mem_limit: 512m
+    cpus: 1.0
+    restart: unless-stopped
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.22.0
+    user: "10001:10001"
+    command: >-
+      mlflow server --host 0.0.0.0 --port 5000 --workers 1
+      --backend-store-uri file:///app/runtime/mlruns
+      --default-artifact-root file:///app/runtime/mlruns --no-serve-artifacts
+    ports: ["127.0.0.1:5000:5000"]
+    volumes: ["energy-runtime:/app/runtime"]
+    mem_limit: 512m
+    cpus: 1.0
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=7d"]
+    ports: ["127.0.0.1:9090:9090"]
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    mem_limit: 256m
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.6.0
+    ports: ["127.0.0.1:3000:3000"]
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Copy .env.example to .env and set a password}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboard.json:/var/lib/grafana/dashboards/energy.json:ro
+      - grafana-data:/var/lib/grafana
+    mem_limit: 256m
+    restart: unless-stopped
+
+volumes:
+  energy-runtime:
+  prometheus-data:
+  grafana-data:

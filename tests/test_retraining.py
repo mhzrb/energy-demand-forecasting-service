@@ -76,3 +76,47 @@ def test_rejects_reusing_champion_evaluation_data(trained, tmp_path, monkeypatch
     )
     with pytest.raises(ValueError, match="prior evaluation"):
         retrain(generate(960), settings, Ledger(tmp_path / "x.sqlite"), tmp_path)
+
+
+def test_rejected_holdout_cannot_be_reused(trained, tmp_path, monkeypatch):
+    settings, _, _ = trained
+    original, _ = load_champion(settings)
+    ledger = Ledger(tmp_path / "rejected.sqlite")
+    future = pd.Timestamp(original.evaluation_end_) + pd.Timedelta(days=60)
+    ledger.decision({"status": "rejected", "validation_end": future.isoformat()})
+    monkeypatch.setattr(
+        retraining,
+        "snapshot",
+        lambda *args: {
+            "drift": {"status": "ok", "drifted": True},
+            "performance": {"status": "insufficient_data", "degraded": False},
+        },
+    )
+    with pytest.raises(ValueError, match="every prior evaluation"):
+        retrain(generate(960, start=future - pd.Timedelta(days=10)), settings, ledger, tmp_path)
+
+
+def test_trigger_cannot_look_at_promotion_holdout(trained, tmp_path, monkeypatch):
+    settings, _, _ = trained
+    original, version = load_champion(settings)
+    ledger = Ledger(tmp_path / "late-trigger.sqlite")
+    start = pd.Timestamp(original.evaluation_end_) + pd.Timedelta(hours=1)
+    X = original.reference_.tail(1)
+    ledger.log([(start + pd.Timedelta(days=45)).isoformat()], version, X, original.predict(X))
+    monkeypatch.setattr(
+        retraining,
+        "snapshot",
+        lambda *args: {
+            "drift": {"status": "ok", "drifted": True},
+            "performance": {"status": "insufficient_data", "degraded": False},
+        },
+    )
+    with pytest.raises(ValueError, match="trigger must precede"):
+        retrain(generate(960, start=start, faults=False), settings, ledger, tmp_path)
+
+
+def test_retraining_lock_excludes_a_second_writer():
+    with retraining.retrain_lock():
+        with pytest.raises(RuntimeError, match="Another retraining job"):
+            with retraining.retrain_lock():
+                pass

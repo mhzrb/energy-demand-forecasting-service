@@ -1,0 +1,159 @@
+annotated-types==0.8.0
+    # via pydantic
+anyio==4.15.1
+    # via
+    #   httpx
+    #   starlette
+cachetools==5.5.2
+    # via mlflow-skinny
+certifi==2026.7.22
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
+cffi==2.1.1
+    # via cryptography
+charset-normalizer==3.5.2
+    # via requests
+click==8.5.0
+    # via
+    #   mlflow-skinny
+    #   uvicorn
+cloudpickle==3.1.2
+    # via mlflow-skinny
+cryptography==50.0.2
+    # via google-auth
+databricks-sdk==0.150.0
+    # via mlflow-skinny
+fastapi==0.115.12
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   mlflow-skinny
+gitdb==4.0.12
+    # via gitpython
+gitpython==3.2.0
+    # via mlflow-skinny
+google-auth==2.61.0
+    # via databricks-sdk
+h11==0.16.0
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==1.0.9
+    # via httpx
+httpx==0.28.1
+    # via energy-demand-service (pyproject.toml)
+idna==3.20
+    # via
+    #   anyio
+    #   httpx
+    #   requests
+importlib-metadata==8.9.0
+    # via mlflow-skinny
+iniconfig==2.3.1
+    # via pytest
+joblib==1.5.3
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   scikit-learn
+mlflow-skinny==2.22.0
+    # via energy-demand-service (pyproject.toml)
+numpy==2.3.5
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   pandas
+    #   scikit-learn
+    #   scipy
+opentelemetry-api==1.45.1
+    # via
+    #   mlflow-skinny
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+opentelemetry-sdk==1.45.1
+    # via mlflow-skinny
+opentelemetry-semantic-conventions==0.66b1
+    # via opentelemetry-sdk
+packaging==24.2
+    # via
+    #   mlflow-skinny
+    #   pytest
+pandas==2.2.3
+    # via energy-demand-service (pyproject.toml)
+pluggy==1.6.0
+    # via pytest
+prometheus-client==0.21.1
+    # via energy-demand-service (pyproject.toml)
+protobuf==6.33.6
+    # via
+    #   databricks-sdk
+    #   mlflow-skinny
+pyasn1==0.6.4
+    # via pyasn1-modules
+pyasn1-modules==0.4.2
+    # via google-auth
+pycparser==3.1
+    # via cffi
+pydantic==2.13.5
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   fastapi
+    #   mlflow-skinny
+pydantic-core==2.46.5
+    # via pydantic
+pytest==8.3.5
+    # via energy-demand-service (pyproject.toml)
+python-dateutil==2.9.0.post0
+    # via pandas
+pytz==2026.5
+    # via pandas
+pyyaml==6.0.3
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   mlflow-skinny
+requests==2.34.2
+    # via
+    #   databricks-sdk
+    #   mlflow-skinny
+ruff==0.11.8
+    # via energy-demand-service (pyproject.toml)
+scikit-learn==1.8.0
+    # via energy-demand-service (pyproject.toml)
+scipy==1.17.0
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   scikit-learn
+six==1.17.0
+    # via python-dateutil
+smmap==5.0.3
+    # via gitdb
+sqlparse==0.6.0
+    # via mlflow-skinny
+starlette==0.46.2
+    # via fastapi
+threadpoolctl==3.7.0
+    # via scikit-learn
+typing-extensions==4.16.0
+    # via
+    #   anyio
+    #   fastapi
+    #   mlflow-skinny
+    #   opentelemetry-api
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+    #   pydantic
+    #   pydantic-core
+    #   typing-inspection
+typing-inspection==0.4.4
+    # via pydantic
+tzdata==2026.5
+    # via pandas
+urllib3==2.8.0
+    # via
+    #   databricks-sdk
+    #   requests
+uvicorn==0.34.2
+    # via
+    #   energy-demand-service (pyproject.toml)
+    #   mlflow-skinny
+zipp==4.1.1
+    # via importlib-metadata

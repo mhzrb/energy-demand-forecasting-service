@@ -75,3 +75,9 @@ def test_feature_values_and_online_offline_parity():
     assert offline.rolling_mean_24.iloc[t] == pytest.approx(frame.demand.iloc[t - 24 : t].mean())
     X, y, _ = supervised(frame)
     assert X.index.min() == 168 and len(X) == len(y) == 552
+
+
+def test_duplicate_columns_have_clear_error():
+    frame = generate(720, faults=False)
+    duplicate = pd.concat([frame, frame[["demand"]]], axis=1)
+    assert validate(duplicate)["errors"]

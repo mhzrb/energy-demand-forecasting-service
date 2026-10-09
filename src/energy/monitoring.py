@@ -35,9 +35,13 @@ class Ledger:
 
     @contextmanager
     def connect(self):
-        with sqlite3.connect(self.path, timeout=10) as db:
-            db.row_factory = sqlite3.Row
-            yield db
+        db = sqlite3.connect(self.path, timeout=10)
+        db.row_factory = sqlite3.Row
+        try:
+            with db:
+                yield db
+        finally:
+            db.close()
 
     def log(self, timestamps, version, features, predictions):
         ids = [str(uuid4()) for _ in timestamps]
@@ -91,6 +95,13 @@ class Ledger:
     def decision(self, payload):
         with self.connect() as db:
             db.execute("INSERT INTO decisions(payload) VALUES (?)", (json.dumps(payload),))
+
+    def evaluation_watermark(self):
+        """Never reuse a promotion holdout, including one that rejected a candidate."""
+        with self.connect() as db:
+            decisions = db.execute("SELECT payload FROM decisions").fetchall()
+        ends = [json.loads(row["payload"]).get("validation_end") for row in decisions]
+        return max((pd.Timestamp(end) for end in ends if end), default=None)
 
 
 def psi(reference, current, bins=10):

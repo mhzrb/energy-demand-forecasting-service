@@ -59,7 +59,7 @@ def generate(hours=9600, seed=42, start="2024-01-01T00:00:00Z", faults=True, dri
 def validate(frame: pd.DataFrame, allow_sensor_faults=False) -> dict:
     errors, warnings = [], []
     report = {"rows": len(frame), "errors": errors, "warnings": warnings, "columns": {}}
-    if set(frame.columns) != COLUMNS:
+    if frame.columns.duplicated().any() or set(frame.columns) != COLUMNS:
         errors.append(f"Expected columns {sorted(COLUMNS)}; got {sorted(frame.columns)}")
         return report
     if len(frame) < 169:

@@ -39,6 +39,8 @@ def create_app(settings=None, model_loader=load_champion, ledger=None):
     )
     samples = Gauge("energy_actual_samples", "Actuals in the current version window", registry=prom)
     ready = Gauge("energy_model_ready", "Registry model loaded successfully", registry=prom)
+    drift_gauge.set(-1)
+    mae_gauge.set(-1)
 
     @asynccontextmanager
     async def lifespan(app):

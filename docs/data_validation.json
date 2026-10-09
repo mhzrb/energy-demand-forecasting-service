@@ -1,0 +1,67 @@
+{
+  "rows": 9600,
+  "errors": [],
+  "warnings": [
+    "temperature: 67 missing/invalid observations (0.70%)",
+    "demand: 67 missing/invalid observations (0.70%)"
+  ],
+  "columns": {
+    "temperature": {
+      "missing": 48,
+      "out_of_range": 19,
+      "bad_row_indices": [
+        232,
+        642,
+        840,
+        1022,
+        1272,
+        1465,
+        1551,
+        1601,
+        2015,
+        2030,
+        2095,
+        2275,
+        2687,
+        2733,
+        2739,
+        2792,
+        2901,
+        3017,
+        3048,
+        3056
+      ]
+    },
+    "demand": {
+      "missing": 48,
+      "out_of_range": 19,
+      "bad_row_indices": [
+        47,
+        149,
+        211,
+        303,
+        514,
+        593,
+        749,
+        779,
+        925,
+        1156,
+        1160,
+        1293,
+        1629,
+        1705,
+        1978,
+        2014,
+        2183,
+        2435,
+        2484,
+        2613
+      ]
+    },
+    "holiday": {
+      "missing": 0,
+      "out_of_range": 0,
+      "bad_row_indices": []
+    }
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "synthetic": true,
+  "scenario": "temperature +11 C; meter gain 1.22 and offset +65 kW",
+  "trigger_window_start": "2025-02-11T00:00:00+00:00",
+  "trigger_window_end": "2025-02-24T23:00:00+00:00",
+  "before_monitor": {
+    "model_version": "1",
+    "drift": {
+      "status": "ok",
+      "drifted": true,
+      "samples": 336,
+      "ks_adjusted_alpha": 0.0008333333333333334,
+      "features": {
+        "temperature": {
+          "psi": 1.2988270432105362,
+          "ks_statistic": 0.3269285714285714,
+          "ks_pvalue": 8.372507261810491e-28,
+          "drifted": true
+        },
+        "holiday": {
+          "psi": 0.0043910331260585845,
+          "ks_statistic": 0.0,
+          "ks_pvalue": 1.0,
+          "drifted": false
+        },
+        "hour_sin": {
+          "psi": 0.002193948976605328,
+          "ks_statistic": 0.0011666666666666668,
+          "ks_pvalue": 1.0,
+          "drifted": false
+        },
+        "hour_cos": {
+          "psi": 0.002162779563743873,
+          "ks_statistic": 0.001,
+          "ks_pvalue": 1.0,
+          "drifted": false
+        },
+        "weekday": {
+          "psi": 0.002187571480390644,
+          "ks_statistic": 0.0008571428571428571,
+          "ks_pvalue": 1.0,
+          "drifted": false
+        },
+        "year_sin": {
+          "psi": 9.366472529129513,
+          "ks_statistic": 1.0,
+          "ks_pvalue": 5e-324,
+          "drifted": true
+        },
+        "year_cos": {
+          "psi": 4.854604359032346,
+          "ks_statistic": 0.864,
+          "ks_pvalue": 8.867333437607055e-234,
+          "drifted": true
+        },
+        "lag_1": {
+          "psi": 6.200807916033316,
+          "ks_statistic": 0.8260714285714286,
+          "ks_pvalue": 3.2813037274471896e-207,
+          "drifted": true
+        },
+        "lag_24": {
+          "psi": 6.332909348526302,
+          "ks_statistic": 0.8315476190476191,
+          "ks_pvalue": 7.862814737042002e-211,
+          "drifted": true
+        },
+        "lag_168": {
+          "psi": 7.365572286545895,
+          "ks_statistic": 0.8908333333333334,
+          "ks_pvalue": 2.4541935495242208e-255,
+          "drifted": true
+        },
+        "rolling_mean_24": {
+          "psi": 11.221896454832965,
+          "ks_statistic": 1.0,
+          "ks_pvalue": 5e-324,
+          "drifted": true
+        },
+        "rolling_std_24": {
+          "psi": 1.7176271505158094,
+          "ks_statistic": 0.5382142857142858,
+          "ks_pvalue": 1.0959743255542188e-77,
+          "drifted": true
+        }
+      }
+    },
+    "performance": {
+      "status": "ok",
+      "samples": 336,
+      "degraded": true,
+      "mae": 57.06253596388786,
+      "rmse": 67.2168686933699,
+      "mape_pct": 8.422516693464784,
+      "mape_excluded_zeros": 0,
+      "reference_mae": 15.272337839730648
+    }
+  },
+  "decision": {
+    "champion_before": "1",
+    "reasons": [
+      "input_drift",
+      "degraded_mae"
+    ],
+    "monitor": {
+      "model_version": "1",
+      "drift": {
+        "status": "ok",
+        "drifted": true,
+        "samples": 336,
+        "ks_adjusted_alpha": 0.0008333333333333334,
+        "features": {
+          "temperature": {
+            "psi": 1.2988270432105362,
+            "ks_statistic": 0.3269285714285714,
+            "ks_pvalue": 8.372507261810491e-28,
+            "drifted": true
+          },
+          "holiday": {
+            "psi": 0.0043910331260585845,
+            "ks_statistic": 0.0,
+            "ks_pvalue": 1.0,
+            "drifted": false
+          },
+          "hour_sin": {
+            "psi": 0.002193948976605328,
+            "ks_statistic": 0.0011666666666666668,
+            "ks_pvalue": 1.0,
+            "drifted": false
+          },
+          "hour_cos": {
+            "psi": 0.002162779563743873,
+            "ks_statistic": 0.001,
+            "ks_pvalue": 1.0,
+            "drifted": false
+          },
+          "weekday": {
+            "psi": 0.002187571480390644,
+            "ks_statistic": 0.0008571428571428571,
+            "ks_pvalue": 1.0,
+            "drifted": false
+          },
+          "year_sin": {
+            "psi": 9.366472529129513,
+            "ks_statistic": 1.0,
+            "ks_pvalue": 5e-324,
+            "drifted": true
+          },
+          "year_cos": {
+            "psi": 4.854604359032346,
+            "ks_statistic": 0.864,
+            "ks_pvalue": 8.867333437607055e-234,
+            "drifted": true
+          },
+          "lag_1": {
+            "psi": 6.200807916033316,
+            "ks_statistic": 0.8260714285714286,
+            "ks_pvalue": 3.2813037274471896e-207,
+            "drifted": true
+          },
+          "lag_24": {
+            "psi": 6.332909348526302,
+            "ks_statistic": 0.8315476190476191,
+            "ks_pvalue": 7.862814737042002e-211,
+            "drifted": true
+          },
+          "lag_168": {
+            "psi": 7.365572286545895,
+            "ks_statistic": 0.8908333333333334,
+            "ks_pvalue": 2.4541935495242208e-255,
+            "drifted": true
+          },
+          "rolling_mean_24": {
+            "psi": 11.221896454832965,
+            "ks_statistic": 1.0,
+            "ks_pvalue": 5e-324,
+            "drifted": true
+          },
+          "rolling_std_24": {
+            "psi": 1.7176271505158094,
+            "ks_statistic": 0.5382142857142858,
+            "ks_pvalue": 1.0959743255542188e-77,
+            "drifted": true
+          }
+        }
+      },
+      "performance": {
+        "status": "ok",
+        "samples": 336,
+        "degraded": true,
+        "mae": 57.06253596388786,
+        "rmse": 67.2168686933699,
+        "mape_pct": 8.422516693464784,
+        "mape_excluded_zeros": 0,
+        "reference_mae": 15.272337839730648
+      }
+    },
+    "promoted": true,
+    "status": "promoted",
+    "candidate_version": "2",
+    "run_id": "c90f404380104c8eaae771d954006199",
+    "champion_gate": {
+      "mae": 57.69588703217464,
+      "rmse": 70.06004043820761,
+      "mape_pct": 8.718497055056465,
+      "mape_excluded_zeros": 0,
+      "interval_coverage": 0.36633663366336633,
+      "mean_interval_width": 78.57630436541915
+    },
+    "candidate_gate": {
+      "mae": 16.2966160477382,
+      "rmse": 21.628209888324843,
+      "mape_pct": 2.6434318399953805,
+      "mape_excluded_zeros": 0,
+      "interval_coverage": 0.7491749174917491,
+      "mean_interval_width": 62.86598389462196
+    },
+    "min_relative_improvement": 0.02,
+    "validation_start": "2025-04-02T09:00:00+00:00",
+    "validation_end": "2025-04-14T23:00:00+00:00",
+    "data_sha256": "2835e8f5ac22adb1419f9074e6cbac08120d1d99220c5f527840104ab955fac3"
+  },
+  "after_input_drift": {
+    "status": "ok",
+    "drifted": true,
+    "samples": 336,
+    "ks_adjusted_alpha": 0.0008333333333333334,
+    "features": {
+      "temperature": {
+        "psi": 4.905290861338317,
+        "ks_statistic": 0.8084529717594233,
+        "ks_pvalue": 1.0054300747705343e-176,
+        "drifted": true
+      },
+      "holiday": {
+        "psi": 0.002733819645956415,
+        "ks_statistic": 0.0,
+        "ks_pvalue": 1.0,
+        "drifted": false
+      },
+      "hour_sin": {
+        "psi": 0.0014033613144423668,
+        "ks_statistic": 0.003411910669975186,
+        "ks_pvalue": 1.0,
+        "drifted": false
+      },
+      "hour_cos": {
+        "psi": 0.0013584857308756866,
+        "ks_statistic": 0.0024813895781637717,
+        "ks_pvalue": 1.0,
+        "drifted": false
+      },
+      "weekday": {
+        "psi": 0.003647076085713809,
+        "ks_statistic": 0.015597305919886565,
+        "ks_pvalue": 0.9999997990776848,
+        "drifted": false
+      },
+      "year_sin": {
+        "psi": 3.1959598256211197,
+        "ks_statistic": 0.456575682382134,
+        "ks_pvalue": 3.5072200638266147e-50,
+        "drifted": true
+      },
+      "year_cos": {
+        "psi": 11.757536836705107,
+        "ks_statistic": 1.0,
+        "ks_pvalue": 5e-324,
+        "drifted": true
+      },
+      "lag_1": {
+        "psi": 0.7634613438366953,
+        "ks_statistic": 0.18532139903107644,
+        "ks_pvalue": 2.2378187518387906e-08,
+        "drifted": true
+      },
+      "lag_24": {
+        "psi": 0.8060165503349774,
+        "ks_statistic": 0.18201287959352475,
+        "ks_pvalue": 4.284481469383483e-08,
+        "drifted": true
+      },
+      "lag_168": {
+        "psi": 0.5953673477047443,
+        "ks_statistic": 0.19950076804915515,
+        "ks_pvalue": 1.2155023903614762e-09,
+        "drifted": true
+      },
+      "rolling_mean_24": {
+        "psi": 1.4284030619711015,
+        "ks_statistic": 0.2690018315018315,
+        "ks_pvalue": 2.931637662506739e-17,
+        "drifted": true
+      },
+      "rolling_std_24": {
+        "psi": 7.75278675281662,
+        "ks_statistic": 0.9793217535153019,
+        "ks_pvalue": 8.04390019319e-312,
+        "drifted": true
+      }
+    }
+  },
+  "future_test_start": "2025-04-15T00:00:00+00:00",
+  "future_test_rows": 336,
+  "original_version": "1",
+  "serving_version_after": "2",
+  "future_test_original": {
+    "mae": 68.8391729122995,
+    "rmse": 84.0961068814145,
+    "mape_pct": 9.972357249867429,
+    "mape_excluded_zeros": 0,
+    "interval_coverage": 0.28869047619047616,
+    "mean_interval_width": 83.40514923227316
+  },
+  "future_test_serving_after": {
+    "mae": 22.268439299406346,
+    "rmse": 29.301060456220352,
+    "mape_pct": 3.4222676970970602,
+    "mape_excluded_zeros": 0,
+    "interval_coverage": 0.7380952380952381,
+    "mean_interval_width": 73.873302275329
+  },
+  "note": "Future test never used for training or promotion. Drift can remain after retraining."
+}

@@ -54,13 +54,19 @@ def retrain(frame, settings, ledger, output: Path):
         }
         if reasons:
             # Do not recycle data previously used for training or promotion evaluation.
-            if pd.to_datetime(frame.timestamp, utc=True).min() <= pd.Timestamp(
-                champion.evaluation_end_
-            ):
-                raise ValueError(
-                    "Retraining data must start after champion's prior evaluation window"
-                )
+            watermark = max(
+                pd.Timestamp(champion.evaluation_end_),
+                ledger.evaluation_watermark() or pd.Timestamp(champion.evaluation_end_),
+            )
+            if pd.to_datetime(frame.timestamp, utc=True).min() <= watermark:
+                raise ValueError("Retraining data must start after every prior evaluation window")
             challenger, report, gate_X, gate_y = fit_candidate(frame, settings)
+            trigger_rows = ledger.recent(version, settings.monitor_window)
+            if any(
+                pd.Timestamp(row["forecast_at"]) >= pd.Timestamp(report["validation_start"])
+                for row in trigger_rows
+            ):
+                raise ValueError("Monitoring trigger must precede the promotion holdout")
             current_score = evaluate(champion, gate_X, gate_y)
             candidate_score = report["metrics"]["gradient_boosting"]
             candidate_version, run_id = register(challenger, report, settings, "retraining")
