@@ -38,6 +38,6 @@ No result here is a claim about actual meters, consultancy customers, carbon red
 
 ## NOT VERIFIED
 
-- Compose runtime, Grafana rendering, Prometheus scraping and MLflow web UI. Docker was not usable in the local execution environment; the image build and Compose config validation were later confirmed by the first passing GitHub Actions run.
+- Visual rendering of Grafana panels in a browser. Docker was not usable in the local execution environment; the image build, Compose runtime, Prometheus scraping, Grafana provisioning and the Grafana-to-Prometheus data-source query were later confirmed by passing GitHub Actions runs (`quality` and `stack` workflows).
 - Any real OpenAI-compatible LLM call. Deterministic output and missing-key fallback were tested; live integration was not called.
 - Python 3.11, native Windows, a fresh isolated OS install, load limits, authentication/TLS, distributed or crash-safe cross-store operation, real sensor generalization, interval calibration.

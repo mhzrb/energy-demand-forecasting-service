@@ -1,6 +1,6 @@
 # Energy Demand Forecasting Service
 
-[![CI](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/ci.yml/badge.svg)](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/ci.yml)
+[![CI](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/ci.yml/badge.svg)](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/ci.yml) [![Stack](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/stack.yml/badge.svg)](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/stack.yml)
 
 A small, end-to-end MLOps project: reproducible raw hourly data → validated causal features → tracked gradient boosting → a versioned FastAPI service → monitoring → evaluated retraining.
 
@@ -152,7 +152,7 @@ Use new data after all previous evaluation windows, with at least 168 warm-up ho
 
 Monitoring uses at most the latest 336 logged forecasts for the **loaded version**; at least 48 samples are needed. Drift requires PSI > 0.2 **and** KS p < 0.01 / number of features. PSI uses training quantile bins, smoothed counts and explicit constant-feature handling. Performance monitoring compares matched MAE against 1.25 × the loaded model's validation MAE. Unknown sample states are explicit; Prometheus uses −1 for insufficient-data drift/MAE gauges.
 
-**Docker image build and Compose configuration: verified in GitHub Actions. Running the full Compose stack (Grafana, Prometheus, MLflow UI): NOT VERIFIED.** The GitHub workflow runs lint, formatting, tests, the pipeline/demo, live HTTP smoke, Compose configuration validation and Docker build; its first run on `main` passed.
+**The Docker image build, Compose configuration and the running four-service stack are verified in GitHub Actions.** The `quality` workflow runs lint, formatting, tests, the pipeline/demo, live HTTP smoke, Compose configuration validation and Docker build. The separate `stack` workflow (`scripts/check_stack.sh`) starts all four containers, requests one forecast, and checks that MLflow and Grafana respond, that Prometheus scrapes the API and holds its forecast counter, and that Grafana lists the provisioned dashboard and can query Prometheus through its data source. Dashboard panels were not inspected visually, and these checks run on GitHub's hosted runners rather than on every possible Docker setup.
 
 ```bash
 cp .env.example .env
@@ -199,8 +199,9 @@ python scripts/plot_demo.py
 | Ruff lint and format | Verified clean |
 | Running API over loopback HTTP | **9 checks passed**; not only TestClient tests |
 | Reproducibility of training and demo | Verified by a fresh isolated rerun; see verification report |
-| Docker image build, Compose config validation | Verified in GitHub Actions (run #1 passed) |
-| Running Compose stack, Grafana dashboard, Prometheus scraping, MLflow UI | **NOT VERIFIED** |
+| Docker image build, Compose config validation | Verified in GitHub Actions (`quality` workflow) |
+| Running Compose stack: API, MLflow, Prometheus scraping, Grafana dashboard provisioning and data-source query | Verified in GitHub Actions (`stack` workflow, `scripts/check_stack.sh`) |
+| Grafana panels rendered visually in a browser | **NOT VERIFIED** (no visual inspection) |
 | GitHub Actions workflow (lint, format, tests, training, demo, API smoke, image build) | Verified; first run passed |
 | Remote LLM | **NOT VERIFIED**; default/fallback tested locally |
 | Real energy data, load capacity, Windows/native or Python 3.11 | **NOT VERIFIED** |
