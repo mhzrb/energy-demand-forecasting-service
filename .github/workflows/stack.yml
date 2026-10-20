@@ -1,0 +1,26 @@
+name: stack
+# Runs the full Docker Compose stack and checks API -> Prometheus -> Grafana end to end.
+# Kept separate from ci.yml so the main quality checks stay independent of it.
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  stack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GRAFANA_ADMIN_PASSWORD: ci-only-placeholder
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose build api
+      - run: docker compose run --rm api energy train --output /app/runtime/evidence
+      - run: docker compose up -d
+      - run: bash scripts/check_stack.sh
+      - name: Show container status and logs on failure
+        if: failure()
+        run: |
+          docker compose ps -a
+          docker compose logs --no-color --tail 100
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
