@@ -150,7 +150,7 @@ Use new data after all previous evaluation windows, with at least 168 warm-up ho
 
 Monitoring uses at most the latest 336 logged forecasts for the **loaded version**; at least 48 samples are needed. Drift requires PSI > 0.2 **and** KS p < 0.01 / number of features. PSI uses training quantile bins, smoothed counts and explicit constant-feature handling. Performance monitoring compares matched MAE against 1.25 × the loaded model's validation MAE. Unknown sample states are explicit; Prometheus uses −1 for insufficient-data drift/MAE gauges.
 
-**Docker build, Compose services and Grafana: NOT VERIFIED here (Docker is not installed).** The supplied GitHub workflow runs lint, formatting, tests, the pipeline/demo, live HTTP smoke, Compose configuration validation and Docker build; that remote workflow itself has not been run here.
+**Docker image build and Compose configuration: verified in GitHub Actions. Running the full Compose stack (Grafana, Prometheus, MLflow UI): NOT VERIFIED.** The GitHub workflow runs lint, formatting, tests, the pipeline/demo, live HTTP smoke, Compose configuration validation and Docker build; its first run on `main` passed.
 
 ```bash
 cp .env.example .env
@@ -197,8 +197,9 @@ python scripts/plot_demo.py
 | Ruff lint and format | Verified clean |
 | Running API over loopback HTTP | **9 checks passed**; not only TestClient tests |
 | Reproducibility of training and demo | Verified by a fresh isolated rerun; see verification report |
-| Docker / Compose / Grafana / MLflow UI | **NOT VERIFIED**; Docker absent |
-| GitHub Actions execution | **NOT VERIFIED**; workflow prepared, no push made |
+| Docker image build, Compose config validation | Verified in GitHub Actions (run #1 passed) |
+| Running Compose stack, Grafana dashboard, Prometheus scraping, MLflow UI | **NOT VERIFIED** |
+| GitHub Actions workflow (lint, format, tests, training, demo, API smoke, image build) | Verified; first run passed |
 | Remote LLM | **NOT VERIFIED**; default/fallback tested locally |
 | Real energy data, load capacity, Windows/native or Python 3.11 | **NOT VERIFIED** |
 

@@ -1,6 +1,6 @@
 # Verification report
 
-Executed in the provided current folder on Linux with **Python 3.12.14**. No Git remote was configured and no code was pushed. The virtual environment reused preinstalled scientific packages to avoid large downloads; application and development dependencies were installed and aligned to `requirements.lock`. An installation in a completely clean OS environment is NOT VERIFIED here.
+Executed in the provided current folder on Linux with **Python 3.12.14**. The virtual environment reused preinstalled scientific packages to avoid large downloads; application and development dependencies were installed and aligned to `requirements.lock`. An installation in a completely clean OS environment is NOT VERIFIED here.
 
 ## Commands actually run
 
@@ -38,7 +38,6 @@ No result here is a claim about actual meters, consultancy customers, carbon red
 
 ## NOT VERIFIED
 
-- Docker executable/build, Compose runtime, Grafana rendering, Prometheus scraping and MLflow web UI. Docker is not installed. Configuration files exist; future CI is configured to build the image.
-- GitHub Actions execution. Only local commits exist; no remote configured or push performed.
+- Compose runtime, Grafana rendering, Prometheus scraping and MLflow web UI. Docker was not usable in the local execution environment; the image build and Compose config validation were later confirmed by the first passing GitHub Actions run.
 - Any real OpenAI-compatible LLM call. Deterministic output and missing-key fallback were tested; live integration was not called.
 - Python 3.11, native Windows, a fresh isolated OS install, load limits, authentication/TLS, distributed or crash-safe cross-store operation, real sensor generalization, interval calibration.

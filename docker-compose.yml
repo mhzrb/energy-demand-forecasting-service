@@ -1,4 +1,4 @@
-# NOT VERIFIED here: Docker is unavailable. See README for initialization order.
+# The image build and this file's syntax are checked in CI; running the full stack is NOT VERIFIED. See README for initialization order.
 services:
   api:
     build: .
