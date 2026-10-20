@@ -1,5 +1,7 @@
 # Energy Demand Forecasting Service
 
+[![CI](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/ci.yml/badge.svg)](https://github.com/mhzrb/energy-demand-forecasting-service/actions/workflows/ci.yml)
+
 A small, end-to-end MLOps project: reproducible raw hourly data → validated causal features → tracked gradient boosting → a versioned FastAPI service → monitoring → evaluated retraining.
 
 **All data and results are synthetic.** This demonstrates engineering and evaluation practices, not validated energy-industry performance, climate projections, carbon savings, or a deployed production system. Default operation is local, CPU-only, and makes no paid API calls or dataset downloads.
