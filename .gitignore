@@ -8,4 +8,3 @@ __pycache__/
 runtime/
 mlruns/
 .coverage
-.codex/

@@ -57,7 +57,7 @@ export ENERGY_RUNTIME=runtime/another-experiment
 energy train --output runtime/another-experiment/evidence
 ```
 
-The configuration is [config/default.yaml](config/default.yaml). CLI overrides use `energy --config path.yaml train`; the API reads `ENERGY_CONFIG`. Python commands read **exported variables**, not `.env` automatically. No model binaries or mutable stores are committed; recreate them with training. This delivered working folder already contains a trained runtime.
+The configuration is [config/default.yaml](config/default.yaml). CLI overrides use `energy --config path.yaml train`; the API reads `ENERGY_CONFIG`. Python commands read **exported variables**, not `.env` automatically. No model binaries or mutable stores are committed; recreate them with training.
 
 ## Forecast contract and endpoints
 
@@ -202,7 +202,7 @@ python scripts/plot_demo.py
 | Remote LLM | **NOT VERIFIED**; default/fallback tested locally |
 | Real energy data, load capacity, Windows/native or Python 3.11 | **NOT VERIFIED** |
 
-See [docs/VERIFICATION.md](docs/VERIFICATION.md) for commands, results and limitations; [PROGRESS.md](PROGRESS.md) for completion status; [DECISIONS.md](DECISIONS.md) for design rationale.
+See [docs/VERIFICATION.md](docs/VERIFICATION.md) for commands, results and limitations; [DECISIONS.md](DECISIONS.md) for design rationale.
 
 ## Limitations and the move to real sensors
 

@@ -20,7 +20,6 @@ Commands below omit the `.venv/bin/` prefix for readability. Complete final-gate
 | `python scripts/plot_demo.py` | Created the saved figure from the actual demo forecast CSV; visually inspected |
 | `python scripts/verify.py` | Repeated lint, format, tests, isolated training/demo and live HTTP smoke; every step passed |
 | YAML parsing of Compose, CI and provisioning; JSON parsing of dashboard | Syntax parsed successfully; this does not validate container execution |
-| Git author, committer, trailer and remote checks | Only Mohammad Zarabieh's confirmed identity; no co-author trailer; no remotes |
 
 The isolated repeat matched the original **input SHA-256, all training/baseline metrics, both future-test metric dictionaries and promotion outcome exactly**. It used a temporary independent tracking store which was removed after comparison; the original `runtime/mlruns` and `runtime/predictions.sqlite` remain available locally. The repeat took about 7.4 seconds for training and 4.7 seconds for the demo in this execution environment; these are not benchmarks for the user's physical laptop.
 
@@ -43,9 +42,3 @@ No result here is a claim about actual meters, consultancy customers, carbon red
 - GitHub Actions execution. Only local commits exist; no remote configured or push performed.
 - Any real OpenAI-compatible LLM call. Deterministic output and missing-key fallback were tested; live integration was not called.
 - Python 3.11, native Windows, a fresh isolated OS install, load limits, authentication/TLS, distributed or crash-safe cross-store operation, real sensor generalization, interval calibration.
-
-## Resume bullets
-
-- Built a reproducible synthetic energy-demand MLOps service with causal time-series features, scikit-learn quantile models, MLflow versioning and a FastAPI inference API.
-- Implemented SQLite prediction/actual tracking, PSI/KS drift checks and guarded champion–challenger retraining; reduced MAE from 68.84 to 22.27 kW on an untouched synthetic drift test.
-- Added 36 passing tests, real HTTP smoke verification, reproducibility checks, and Docker/Prometheus/Grafana and GitHub Actions configuration; container deployment remains unverified.
